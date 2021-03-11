@@ -23,13 +23,13 @@ const (
 // DiffRange contains the DiffLine's
 type DiffRange struct {
 
-	// starting line number
+	//起始行号
 	Start int
 
-	// the number of lines the change diffHunk applies to
+	// 行数
 	Length int
 
-	// Each line of the hunk range.
+	// 代码块
 	Lines []*DiffLine
 }
 
