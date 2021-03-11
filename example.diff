@@ -1,32 +1,30 @@
 diff --git a/main.go b/main.go
-index c12fd42..811810d 100644
+index 579a304..752b192 100644
 --- a/main.go
 +++ b/main.go
-@@ -8,12 +8,12 @@ import (
+@@ -11,7 +11,7 @@ func main() {
 
- // error handling left out for brevity
- func main() {
-+
-+       byt, _ := ioutil.ReadFile("example.diff")
-+       diff, _ := diffparser.Parse(string(byt))
-        fmt.Println("hello git diff")
-        fmt.Println("hello git diff")
-        fmt.Println("hello git diff")
--       byt, _ := ioutil.ReadFile("example.diff")
--       diff, _ := diffparser.Parse(string(byt))
+        byt, _ := ioutil.ReadFile("example.diff")
+        diff, _ := diffparser.Parse(string(byt))
 -
-        // You now have a slice of files from the diff,
-        file := diff.Files[0]
-        // diff hunks in the file,
-diff --git a/test/test.go b/test/test.go
-index 56e5404..2675738 100644
---- a/test/test.go
-+++ b/test/test.go
-@@ -1 +1,7 @@
- package test
++       fmt.Println("hello")
+        //现在，您可以从差异中获取文件的一部分，
+        for k := range diff.Files {
+                //获取diff 头
+
+
+@@ -20,10 +20,9 @@ func main() {
+                        hunk := file.Hunks[k1]
+                        // new and old ranges in the hunk
+                        newRange := hunk.NewRange
+-
++                       fmt.Println("hello", newRange)
+                        // and lines in the ranges.
+-                       line := newRange.Lines[0]
+-                       fmt.Println(line)
 +
-+import "fmt"
-+
-+func test() {
-+       fmt.Println("hello test")
-+}
+                }
+        }
+ }
+
+

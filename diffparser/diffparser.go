@@ -9,18 +9,23 @@ import (
 )
 
 // FileMode represents the file status in a diff
+// FileMode表示差异中的文件状态
 type FileMode int
 
 const (
 	// DELETED if the file is deleted
+	// 如果文件已删除，则删除
 	DELETED FileMode = iota
 	// MODIFIED if the file is modified
+	// 已修改（如果文件被修改）
 	MODIFIED
 	// NEW if the file is created and there is no diff
+	//如果文件已创建且没有差异，则为NEW
 	NEW
 )
 
 // DiffRange contains the DiffLine's
+//DiffRange包含多个DiffLine
 type DiffRange struct {
 
 	//起始行号
@@ -34,26 +39,33 @@ type DiffRange struct {
 }
 
 // DiffLineMode tells the line if added, removed or unchanged
+// DiffLineMode告诉该行是添加，删除还是保持不变
 type DiffLineMode rune
 
 const (
 	// ADDED if the line is added (shown green in diff)
+	////添加（如果添加了该行）（差异显示为绿色）
 	ADDED DiffLineMode = iota
 	// REMOVED if the line is deleted (shown red in diff)
+	//已删除（如果删除了该行）（差异显示为红色）
 	REMOVED
 	// UNCHANGED if the line is unchanged (not colored in diff)
+	//如果该行未更改（未在diff中着色），则保持不变
 	UNCHANGED
 )
 
 // DiffLine is the least part of an actual diff
+// DiffLine是实际差异的最小部分
 type DiffLine struct {
-	Mode     DiffLineMode
+	Mode     DiffLineMode // DiffLineMode告诉该行是添加，删除还是保持不变
 	Number   int
 	Content  string
-	Position int // the line in the diff
+	Position int // the line in the diff //差异中的行
+
 }
 
 // DiffHunk is a group of difflines
+// DiffHunk是一组difflines
 type DiffHunk struct {
 	HunkHeader string
 	OrigRange  DiffRange
@@ -62,6 +74,7 @@ type DiffHunk struct {
 }
 
 // DiffFile is the sum of diffhunks and holds the changes of the file features
+//DiffFile 是diffhunks的总和，用于保存文件功能的更改
 type DiffFile struct {
 	DiffHeader string
 	Mode       FileMode
@@ -71,6 +84,7 @@ type DiffFile struct {
 }
 
 // Diff is the collection of DiffFiles
+// Diff是DiffFiles的集合
 type Diff struct {
 	Files []*DiffFile
 	Raw   string `sql:"type:text"`
@@ -84,6 +98,9 @@ func (d *Diff) addFile(file *DiffFile) {
 
 // Changed returns a map of filename to lines changed in that file. Deleted
 // files are ignored.
+
+// Changed返回文件名映射到该文件中更改的行。已删除
+//文件将被忽略。
 func (d *Diff) Changed() map[string][]int {
 	dFiles := make(map[string][]int)
 
@@ -126,6 +143,9 @@ func lineMode(line string) (*DiffLineMode, error) {
 
 // Parse takes a diff, such as produced by "git diff", and parses it into a
 // Diff struct.
+
+//解析会获取一个差异（例如由“ git diff”产生的差异），并将其解析为
+//区分结构。
 func Parse(diffString string) (*Diff, error) {
 	var diff Diff
 	diff.Raw = diffString
