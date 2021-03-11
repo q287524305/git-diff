@@ -1,0 +1,11 @@
+diff --git a/main.go b/main.go
+index 5e37a9b..9a1f678 100644
+--- a/main.go
++++ b/main.go
+@@ -8,6 +8,7 @@ import (
+
+ // error handling left out for brevity
+ func main() {
++       fmt.Println("hello git diff")
+        byt, _ := ioutil.ReadFile("example.diff")
+        diff, _ := diffparser.Parse(string(byt))
