@@ -15,3 +15,6 @@ func test12() {
 func test123() {
 	fmt.Println("hello test")
 }
+func test1234() {
+	fmt.Println("hello test")
+}
