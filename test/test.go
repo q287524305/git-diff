@@ -3,7 +3,7 @@ package test
 import "fmt"
 
 func test() {
-	fmt.Println("hello test")
+	fmt.Println("hello test12222")
 }
 func test1() {
 	fmt.Println("hello test")
