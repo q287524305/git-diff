@@ -309,6 +309,8 @@ func isSourceLine(line string) bool {
 }
 
 // Length returns the hunks line length
+//长度返回粗线的长度
+
 func (hunk *DiffHunk) Length() int {
 	return len(hunk.WholeRange.Lines) + 1
 }

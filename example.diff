@@ -1,30 +1,41 @@
 diff --git a/main.go b/main.go
-index 579a304..752b192 100644
+index 7905807..41e7f16 100644
 --- a/main.go
 +++ b/main.go
-@@ -11,7 +11,7 @@ func main() {
-
-        byt, _ := ioutil.ReadFile("example.diff")
-        diff, _ := diffparser.Parse(string(byt))
--
-+       fmt.Println("hello")
-        //现在，您可以从差异中获取文件的一部分，
-        for k := range diff.Files {
-                //获取diff 头
-
-
-@@ -20,10 +20,9 @@ func main() {
-                        hunk := file.Hunks[k1]
-                        // new and old ranges in the hunk
-                        newRange := hunk.NewRange
--
-+                       fmt.Println("hello", newRange)
-                        // and lines in the ranges.
--                       line := newRange.Lines[0]
--                       fmt.Println(line)
-+
-                }
-        }
+@@ -1,5 +1,7 @@
+ package main
+ 
+-func main() {
++import "fmt"
+ 
++func main() {
++       fmt.Println("main")
  }
-
-
+diff --git a/test/test1.go b/test/test1.go
+index 8001ad7..065789c 100644
+--- a/test/test1.go
++++ b/test/test1.go
+@@ -1,5 +1,7 @@
+ package test
+ 
+-func test1() {
++import "fmt"
+ 
++func test1() {
++       fmt.Println("test1")
+ }
+diff --git a/test/test2.go b/test/test2.go
+index b1880a5..cde2083 100644
+--- a/test/test2.go
++++ b/test/test2.go
+@@ -1,5 +1,7 @@
+ package test
+ 
+-func test2() {
++import "fmt"
+ 
++func test2() {
++       fmt.Println("test1")
+ }
+~
+~
